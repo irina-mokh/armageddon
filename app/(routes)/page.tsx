@@ -1,23 +1,38 @@
+// 'use client'
 import Layout from '../components/Layout'
 import styles from './page.module.scss'
 import '../globals.scss';
+import { Asteroid } from '../components/Asteroid';
+import { AsteroidType, NearEarthType } from '../types';
+import { DistanceToggler } from '../components/DistanceToggler';
 
-export default function Home() {
+const API_KEY = "BhgFsluUBWJgMyfvqc8gUE9NAGRswpBjMvXpFYRd";
+
+async function getData() {
+  const today = (new Date()).toISOString().slice(0, 10);
+  const res = await fetch(`https://api.nasa.gov/neo/rest/v1/feed?api_key=${API_KEY}&start_date=${today}`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+  const data: NearEarthType = (await res.json()).near_earth_objects;
+  return data;
+}
+
+export default async function Home() {
+  const data = await getData();
+  const asteroids: AsteroidType[] = [...Object.values(data).flat()];
   return (
     <Layout>
       <main className={styles.main}>
-        <h2 className={styles.title}>Ближайшие подлёты астероидов</h2>
-        <form className={styles.filter}>
-          <input type='radio' id="km" value="km" name="distance" checked></input>
-          <label htmlFor='km'>в километрах</label>
-          <input type='radio' id="lunar" value="km" name="distance"></input>
-          <label htmlFor='lunar'>в лунных орбитах</label>
-        </form>
-        <ul>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate pariatur fuga assumenda nisi ipsam accusantium numquam asperiores aut praesentium. Nulla, beatae voluptas facere ab fugiat laboriosam eligendi nobis. Maiores, cupiditate!</li>
-
-        </ul>
+        <div className={styles.content}>
+          <h2 className={styles.title}>Ближайшие подлёты астероидов</h2>
+          <DistanceToggler />
+          <ul className={styles.list}>
+            {asteroids.map(a => <li key={a.id} className={styles.asteroid}><Asteroid {...a} checked={false}></Asteroid></li>)}
+          </ul>
+        </div>
       </main>
     </Layout>
   )
-}
+};

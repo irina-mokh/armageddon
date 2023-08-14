@@ -1,0 +1,15 @@
+.input {
+  display: none;
+  &:checked + .label {
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
+
+.label {
+  text-decoration: underline;
+}
+
+.divider {
+  padding: 0 5px;
+}

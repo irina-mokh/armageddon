@@ -15,3 +15,6 @@ body {
 	margin: 0;
 }
 
+a, button, input[type=submit], input[type=reset], label {
+  cursor: url("./assets/images/icons/Pointinghand.svg"), pointer;
+}
