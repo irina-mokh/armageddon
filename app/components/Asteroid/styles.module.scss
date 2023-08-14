@@ -7,7 +7,80 @@
 	font-weight: 700;
 }
 
+.distance {
+	path {
+		width: 100%;
+	}
+}
+
 .name {
 	font-weight: 700;
 	text-decoration: underline;
+}
+
+.row {
+	display: flex;
+	margin-top: 8px;
+}
+
+.thmb {
+	display: block;
+	padding: 0 8px;
+	background-image: url('../../assets/images/asteroid.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
+.thmb_small {
+	width: 24px;
+	height: 24px;
+}
+
+.thmb_big {
+	width: 36px;
+	height: 40px;
+}
+
+.size {
+	display: inline-block;
+	&::before {
+		content: 'Ø';
+		margin-right: 5px;
+	}
+}
+.danger {
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+	&::before {
+		content: '';
+		display: inline-block;
+		margin-right: 5px;
+		background-image: url('../../assets/images/icons/warning.svg');
+		width: 14px;
+		height: 14px;
+		background-size: contain;
+	}
+	
+}
+
+.btn {
+	padding: 2px 11px;
+	border-radius: 1em;
+	color: #F86600;
+	background:  rgba(248, 102, 0, 0.15);
+	text-transform: uppercase;
+	border: none;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 20px;
+	letter-spacing: 1px;
+	&:hover {
+		background-color: #F86600;
+		color: #FFFFFF;
+	}
+	&_checked {
+		color: var(--red-smooth, #F5DED9);
+	}
 }
