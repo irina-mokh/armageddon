@@ -3,6 +3,8 @@ import { Dispatch, SetStateAction } from 'react';
 export type StateType = {
 	// data: Array<AsteroidType>;
 	// setData: Dispatch<SetStateAction<AsteroidType[]>>;
+	measure: DistanceType,
+	setMeasure: Dispatch<SetStateAction<DistanceType>>;
 	cart: Array<number>;
 	setCart: Dispatch<SetStateAction<number[]>>;
 }

@@ -4,12 +4,14 @@ import { Header } from '../Header'
 import { Footer } from '../Footer'
 import { Context, useState } from 'react';
 import { createContext } from 'react';
-import { AsteroidType, StateType } from '@/app/types';
+import { AsteroidType, DistanceType, StateType } from '@/app/types';
 import styles from './styles.module.scss'
 
 const INITIAL_STATE: StateType = {
   cart: [],
   setCart: () => {},
+  measure: 'kilometers' as DistanceType,
+  setMeasure: () => {},
 };
 
 export const AppContext: Context<StateType> = createContext<StateType>(INITIAL_STATE);
@@ -20,10 +22,11 @@ export default function Layout({
   children: React.ReactNode
 }) {
   const [cart, setCart] = useState<Array<number>>([]);
+  const [ measure, setMeasure] = useState<DistanceType>('kilometers');
   // const [data, setData] = useState<Array<AsteroidType>>([]);
 
   const state: StateType = {
-    cart, setCart,
+    cart, setCart, measure, setMeasure
   }
   return (
     <AppContext.Provider value={state}>

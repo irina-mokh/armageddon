@@ -3,14 +3,10 @@ import { AsteroidType } from '@/app/types'
 import styles from './styles.module.scss'
 import React, { useContext } from 'react';
 import { AppContext } from '../Layout';
+import { getDeclension } from '@/app/helpers';
 
 interface AsteroidProps extends AsteroidType {
 	// checked: boolean;
-}
-
-const DISTANCE_MEASURE = {
-	'kilometers': 'км',
-	"lunar": 'лунных орбит',
 }
 
 const getSize = (n: number) => n > 100 ? "thmb_big" : "thmb_small";
@@ -19,12 +15,14 @@ export const Asteroid = ( props: AsteroidProps) => {
 	const {id, name, close_approach_data, estimated_diameter, is_potentially_hazardous_asteroid} = props;
 
 	const approach = close_approach_data[0];
-	const measure = 'kilometers';
 
 	const d = Math.round(+estimated_diameter.meters.estimated_diameter_max);
 	const thmb = getSize(d);
+	
+	let { cart, setCart, measure } = useContext(AppContext);
 
-	let { cart, setCart } = useContext(AppContext);
+	const distance = Math.round(Number(approach.miss_distance[measure]))
+	const distanceMeasure = measure == "kilometers" ? 'км' : getDeclension(distance, 'лунная орбита', 'лунные  орбиты', 'лунных орбит')
 	const checked = cart.includes(id);
 
 	const handleRemoveFromCart = () => {
@@ -44,8 +42,8 @@ export const Asteroid = ( props: AsteroidProps) => {
 			<div className={styles.row}>
 				<div>
 					<p className={styles.distance}>
-						{Math.round(Number(approach.miss_distance[measure])).toLocaleString()}
-						<span>{' ' + DISTANCE_MEASURE[measure]}</span>
+						{distance.toLocaleString()}
+						<span>{' ' + distanceMeasure}</span>
 					</p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="129" height="6" viewBox="0 0 129 6" fill="none">
 						<path d="M0 3L5 5.88675L5 0.113249L0 3ZM129 3.00001L124 0.113259L124 5.88676L129 3.00001ZM4.5 3.5L124.5 3.50001L124.5 2.50001L4.5 2.5L4.5 3.5Z" fill="white" fillOpacity="0.5"/>
