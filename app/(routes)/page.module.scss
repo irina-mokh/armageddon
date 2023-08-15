@@ -1,28 +1,5 @@
-.main {
-  flex-grow: 1;
-  margin-top: 10px;
-  padding: 0 1.5em;
-  background-image: url('../assets/images/planeta_zemlia_kosmos_167499_2560x1600\ 1.png');
-  background-repeat: no-repeat;
-  background-position: -220px 100px;
-  background-size: auto 75vh;
-  background-attachment: fixed;
-  @media (min-width: 1025px) {
-    background-position: 0 100px;
-  }
-}
-
-.content {
-  margin-left: auto;
-  max-width: max(75%, 250px);
-  @media (min-width: 1025px) {
-    max-width: 60%;
-    margin-right: 150px;
-  }
-}
-
 .title {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 28px;
   font-weight: 700;
   line-height: 36px;
@@ -31,4 +8,3 @@
 .filter {
   margin-top: 8px;
 }
-

@@ -1,71 +1,59 @@
 'use client';
-import { AsteroidType } from '@/app/types'
-import styles from './styles.module.scss'
 import React, { useContext } from 'react';
+import Link from 'next/link';
+import { AsteroidType } from '@/app/types';
 import { AppContext } from '../Layout';
-import { getDeclension } from '@/app/helpers';
+import { formatDate, getDeclension } from '@/app/helpers';
 
-interface AsteroidProps extends AsteroidType {
-	// checked: boolean;
-}
+import styles from './asteroid.module.scss';
+import { Danger } from '../Danger';
+import { SizeThmb } from '../SizeThmb';
+import { Size } from '../Size';
+import { Distance } from '../Distance';
 
-const getSize = (n: number) => n > 100 ? "thmb_big" : "thmb_small";
+export const Asteroid = (props: AsteroidType) => {
+  const { id, name, close_approach_data, estimated_diameter, is_potentially_hazardous_asteroid } = props;
 
-export const Asteroid = ( props: AsteroidProps) => {
-	const {id, name, close_approach_data, estimated_diameter, is_potentially_hazardous_asteroid} = props;
+  const approach = close_approach_data[0];
+  const d = estimated_diameter.meters.estimated_diameter_max;
+  let { cart, setCart } = useContext(AppContext);
 
-	const approach = close_approach_data[0];
+  const checked = cart.includes(id);
 
-	const d = Math.round(+estimated_diameter.meters.estimated_diameter_max);
-	const thmb = getSize(d);
-	
-	let { cart, setCart, measure } = useContext(AppContext);
+  const handleRemoveFromCart = () => {
+    setCart([...cart.filter((cartId) => cartId !== id)]);
+  };
 
-	const distance = Math.round(Number(approach.miss_distance[measure]))
-	const distanceMeasure = measure == "kilometers" ? 'км' : getDeclension(distance, 'лунная орбита', 'лунные  орбиты', 'лунных орбит')
-	const checked = cart.includes(id);
+  const handleAddToCart = () => {
+    setCart([...cart, id]);
+  };
 
-	const handleRemoveFromCart = () => {
-		setCart([...cart.filter(cartId => cartId !== id)])
-	}
+  return (
+    <li className={styles.card}>
+      <p className={styles.date}>
+        {formatDate(approach.close_approach_date_full)}
+      </p>
 
-	const handleAddToCart = () => {
-		setCart([...cart, id])
-	}
-
-	return (
-		<li className={styles.card}>
-			<p className={styles.date}>{new Date(approach.close_approach_date_full).toLocaleDateString('ru-Ru', {
-				dateStyle: 'medium'
-			}).slice(0, -3).replace('.', '')}</p>
-
-			<div className={styles.row}>
-				<div>
-					<p className={styles.distance}>
-						{distance.toLocaleString()}
-						<span>{' ' + distanceMeasure}</span>
-					</p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="129" height="6" viewBox="0 0 129 6" fill="none">
-						<path d="M0 3L5 5.88675L5 0.113249L0 3ZM129 3.00001L124 0.113259L124 5.88676L129 3.00001ZM4.5 3.5L124.5 3.50001L124.5 2.50001L4.5 2.5L4.5 3.5Z" fill="white" fillOpacity="0.5"/>
-					</svg>
-				</div>
-
-				<div className={styles[thmb] + ' ' + styles.thmb}></div>
-
-				<div>
-					<p className={styles.name}>{name}</p>
-					<p className={styles.size}>
-						{d}
-						<span>м</span>
-					</p>
-				</div>
-			</div>
-			<div className={styles.row}>
-				{checked ? <button className={styles.btn + ' ' + styles.btn_checked} onClick={handleRemoveFromCart}>В корзине</button> : <button className={styles.btn} onClick={handleAddToCart}>Заказать</button>}
-
-				{is_potentially_hazardous_asteroid && <p className={styles.danger}>Опасен</p>}
-			</div>
-
-		</li>
-	)
-}
+      <div className={styles.row}>
+        <Distance {...approach.miss_distance}/>
+        <SizeThmb d={d}/>
+        <div>
+          <Link href={`/asteroid/${id}`} className={styles.name}>{name}</Link>
+          <Size d={d}/>
+        </div>
+      </div>
+      <div className={styles.row}>
+        {checked ? (
+          <button className={styles.btn + ' ' + styles.btn_checked} onClick={handleRemoveFromCart}>
+            В корзине
+          </button>
+        ) : (
+          <button className={styles.btn} onClick={handleAddToCart}>
+            Заказать
+          </button>
+        )}
+        {is_potentially_hazardous_asteroid && <Danger />}
+      </div>
+    </li>
+  );
+};

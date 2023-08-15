@@ -6,15 +6,19 @@
 body {
   font-family: Helvetica, Arial, sans-serif;
   margin: 0;
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: #000000;
 }
 
 * {
   padding: 0;
-	margin: 0;
+  margin: 0;
 }
 
-a, button, input[type=submit], input[type=reset], label {
-  cursor: url("./assets/images/icons/Pointinghand.svg"), pointer;
+a,
+button,
+input[type='submit'],
+input[type='reset'],
+label {
+  cursor: url('./assets/images/icons/Pointinghand.svg'), pointer;
 }

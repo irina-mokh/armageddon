@@ -1,0 +1,7 @@
+.size {
+  display: inline-block;
+  &::before {
+    content: 'Ø';
+    margin-right: 5px;
+  }
+}

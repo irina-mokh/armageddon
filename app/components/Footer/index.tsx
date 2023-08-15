@@ -1,7 +1,5 @@
-import styles from './styles.module.scss'
+import styles from './footer.module.scss';
 
 export const Footer = () => {
-	return (
-		<footer className={styles.container}>© Все права и планета защищены</footer>
-	)
-}
+  return <footer className={styles.container}>© Все права и планета защищены</footer>;
+};

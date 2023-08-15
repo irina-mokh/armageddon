@@ -1,0 +1,40 @@
+.card {
+  margin-top: 1.5em;
+  list-style: none;
+}
+
+.date {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.name {
+  display: block;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.row {
+  display: flex;
+  margin-top: 8px;
+}
+
+.btn {
+  padding: 2px 11px;
+  border-radius: 1em;
+  color: #f86600;
+  background: rgba(248, 102, 0, 0.15);
+  text-transform: uppercase;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 1px;
+  &:hover {
+    background-color: #f86600;
+    color: #ffffff;
+  }
+  &_checked {
+    color: var(--red-smooth, #f5ded9);
+  }
+}
