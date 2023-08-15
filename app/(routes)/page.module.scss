@@ -1,5 +1,6 @@
 .main {
   flex-grow: 1;
+  margin-top: 10px;
   padding: 0 1.5em;
   background-image: url('../assets/images/planeta_zemlia_kosmos_167499_2560x1600\ 1.png');
   background-repeat: no-repeat;
@@ -16,6 +17,7 @@
   max-width: max(75%, 250px);
   @media (min-width: 1025px) {
     max-width: 60%;
+    margin-right: 150px;
   }
 }
 
@@ -28,10 +30,5 @@
 
 .filter {
   margin-top: 8px;
-
-}
-
-.asteroid {
-  list-style: none;
 }
 

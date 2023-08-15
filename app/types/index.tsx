@@ -1,3 +1,11 @@
+import { Dispatch, SetStateAction } from 'react';
+
+export type StateType = {
+	// data: Array<AsteroidType>;
+	// setData: Dispatch<SetStateAction<AsteroidType[]>>;
+	cart: Array<number>;
+	setCart: Dispatch<SetStateAction<number[]>>;
+}
 export type DistanceType = "kilometers" | 'lunar';
 type ApproachType = {
 	close_approach_date_full: string;
