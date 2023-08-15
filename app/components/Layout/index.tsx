@@ -12,6 +12,8 @@ const INITIAL_STATE: StateType = {
   setCart: () => {},
   measure: 'kilometers' as DistanceType,
   setMeasure: () => {},
+  asteroids: [],
+  setAsteroids: () => {},
 };
 
 export const AppContext: Context<StateType> = createContext<StateType>(INITIAL_STATE);
@@ -23,10 +25,10 @@ export default function Layout({
 }) {
   const [cart, setCart] = useState<Array<number>>([]);
   const [ measure, setMeasure] = useState<DistanceType>('kilometers');
-  // const [data, setData] = useState<Array<AsteroidType>>([]);
+  const [asteroids, setAsteroids] = useState<Array<AsteroidType>>([]);
 
   const state: StateType = {
-    cart, setCart, measure, setMeasure
+    cart, setCart, measure, setMeasure, asteroids, setAsteroids
   }
   return (
     <AppContext.Provider value={state}>

@@ -1,3 +1,5 @@
+import { AsteroidType, NearEarthType } from '../types';
+
 export function getDeclension (n: number, v1: string, v2: string, v3: string) {
 	// get last char
 	const i: string = String(n)[String(n).length - 1];
@@ -12,4 +14,9 @@ export function getDeclension (n: number, v1: string, v2: string, v3: string) {
 		default:
 			return v3
 	}
+}
+
+export const extractAsteroids = (data: NearEarthType) => {
+	let asteroids: AsteroidType[] = [...Object.values(data).flat()].sort((a, b) => +new Date(a.close_approach_data[0].close_approach_date_full) - +new Date(b.close_approach_data[0].close_approach_date_full));
+	return asteroids;
 }

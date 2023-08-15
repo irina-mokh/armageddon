@@ -3,7 +3,7 @@ import { DistanceToggler } from '../components/DistanceToggler';
 
 import '../globals.scss';
 import styles from './page.module.scss';
-import AsteroidList  from '../components/AsteroidList';
+import AsteroidList  from '../components/ServerAsteroidList';
 import { CartBar } from '../components/CartBar';
 
 export default function Home () {
