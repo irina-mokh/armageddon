@@ -17,7 +17,7 @@ export type ApproachType = {
     kilometers: string;
   };
   relative_velocity: {
-    kilometers_per_hour: string;
+    kilometers_per_second: string;
   };
   orbiting_body: string;
 };
