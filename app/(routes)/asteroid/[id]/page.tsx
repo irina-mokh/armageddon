@@ -9,6 +9,8 @@ import { ApproachList } from '@/app/components/ApproachList';
 
 import styles from './page.module.scss';
 import '@/app/globals.scss';
+import Link from 'next/link';
+import { Back } from '@/app/components/Back';
 
 async function getAsteroidData(id: string) {
   const res = await fetch(`https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${API_KEY}`);
@@ -35,6 +37,7 @@ export default async function AsteroidPage({ params }: { params: { id: string } 
 
   return (
     <>
+      <Back />
       <DistanceToggler />
       <p className={styles.title}>{name}</p>
 

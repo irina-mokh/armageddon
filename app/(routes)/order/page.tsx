@@ -5,6 +5,7 @@ import { Asteroid } from '@/app/components/Asteroid';
 
 import '@/app/globals.scss';
 import { useContext } from 'react';
+import { Back } from '@/app/components/Back';
 
 export default function OrderPage() {
   const { cart, setCart, asteroids } = useContext(AppContext);
@@ -18,6 +19,7 @@ export default function OrderPage() {
 
   return (
     <>
+      <Back />
       <h2>Заказ отправлен!</h2>
       <ul>{items}</ul>
     </>
