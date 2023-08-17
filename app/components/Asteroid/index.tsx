@@ -1,17 +1,17 @@
 'use client';
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import { AsteroidType } from '@/app/types';
-import { AppContext } from '../Layout';
-import { formatDate, getDeclension } from '@/app/helpers';
-
-import styles from './asteroid.module.scss';
 import { Danger } from '../Danger';
 import { SizeThmb } from '../SizeThmb';
 import { Size } from '../Size';
 import { Distance } from '../Distance';
+import { AppContext } from '../Layout';
+import { AsteroidType } from '@/app/types';
+import { formatDate } from '@/app/helpers';
 
-interface AsteroidProps extends AsteroidType{
+import styles from './asteroid.module.scss';
+
+interface AsteroidProps extends AsteroidType {
   checkable: boolean;
 }
 export const Asteroid = (props: AsteroidProps) => {
@@ -33,16 +33,16 @@ export const Asteroid = (props: AsteroidProps) => {
 
   return (
     <li className={styles.card}>
-      <p className={styles.date}>
-        {formatDate(approach.close_approach_date_full)}
-      </p>
+      <p className={styles.date}>{formatDate(approach.close_approach_date_full)}</p>
 
       <div className={styles.row}>
-        <Distance {...approach.miss_distance}/>
-        <SizeThmb d={d}/>
+        <Distance {...approach.miss_distance} />
+        <SizeThmb d={d} />
         <div>
-          <Link href={`/asteroid/${id}`} className={styles.name}>{name}</Link>
-          <Size d={d}/>
+          <Link href={`/asteroid/${id}`} className={styles.name}>
+            {name}
+          </Link>
+          <Size d={d} />
         </div>
       </div>
       <div className={styles.row}>
@@ -55,8 +55,7 @@ export const Asteroid = (props: AsteroidProps) => {
             <button className={styles.btn} onClick={handleAddToCart}>
               Заказать
             </button>
-          ))
-        }
+          ))}
         {is_potentially_hazardous_asteroid && <Danger />}
       </div>
     </li>

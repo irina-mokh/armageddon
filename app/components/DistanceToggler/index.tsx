@@ -1,8 +1,9 @@
 'use client';
+import { useContext } from 'react';
 import { DistanceType } from '@/app/types';
-import { useContext, useState } from 'react';
-import styles from './distance-toggler.module.scss';
 import { AppContext } from '../Layout';
+
+import styles from './distance-toggler.module.scss';
 
 export const DistanceToggler = () => {
   const { measure, setMeasure } = useContext(AppContext);

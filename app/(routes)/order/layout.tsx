@@ -4,7 +4,5 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <section>{children}</section>
-  );
+  return <section>{children}</section>;
 }

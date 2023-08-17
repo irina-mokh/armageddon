@@ -28,10 +28,10 @@ export const extractAsteroids = (data: NearEarthType) => {
 export const getSize = (n: number) => (n > 100 ? 'thmb_big' : 'thmb_small');
 
 export const formatDate = (d: string) => {
-  return (new Date(d)
-  .toLocaleDateString('ru-Ru', {
-    dateStyle: 'medium',
-  })
-  .slice(0, -3)
-  .replace('.', ''))
-}
+  return new Date(d)
+    .toLocaleDateString('ru-Ru', {
+      dateStyle: 'medium',
+    })
+    .slice(0, -3)
+    .replace('.', '');
+};
