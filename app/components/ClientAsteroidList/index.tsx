@@ -20,7 +20,7 @@ export const ClientAsteroidList = ({ initial }: ClientAsteroidListType) => {
   return (
     <ul>
       {asteroids.map((a) => (
-        <Asteroid {...a} key={a.id}></Asteroid>
+        <Asteroid checkable {...a} key={a.id}></Asteroid>
       ))}
     </ul>
   );

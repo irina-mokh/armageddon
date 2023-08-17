@@ -5,11 +5,10 @@ import { ApproachType, AsteroidType } from '@/app/types';
 import { Danger } from '@/app/components/Danger';
 import { Size } from '@/app/components/Size';
 import { DistanceToggler } from '@/app/components/DistanceToggler';
+import { ApproachList } from '@/app/components/ApproachList';
 
 import styles from './page.module.scss';
 import '@/app/globals.scss';
-import { useState } from 'react';
-import { ApproachList } from '@/app/components/ApproachList';
 
 
 async function getAsteroidData(id: string) {
@@ -38,7 +37,7 @@ export default async function  AsteroidPage ({params}: { params: { id: string } 
 	});
 
 	return (
-		<Layout>
+		<>
 			<DistanceToggler />
 			<p className={styles.title}>{name}</p>
 
@@ -53,6 +52,6 @@ export default async function  AsteroidPage ({params}: { params: { id: string } 
 				<ApproachList data={prev} title="Прошлые" />
 				<ApproachList data={next} title="Предстоящие" />
 			</section>
-		</Layout>
+		</>
 	)
 }

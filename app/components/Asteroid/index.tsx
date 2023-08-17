@@ -11,8 +11,11 @@ import { SizeThmb } from '../SizeThmb';
 import { Size } from '../Size';
 import { Distance } from '../Distance';
 
-export const Asteroid = (props: AsteroidType) => {
-  const { id, name, close_approach_data, estimated_diameter, is_potentially_hazardous_asteroid } = props;
+interface AsteroidProps extends AsteroidType{
+  checkable: boolean;
+}
+export const Asteroid = (props: AsteroidProps) => {
+  const { id, name, close_approach_data, estimated_diameter, is_potentially_hazardous_asteroid, checkable } = props;
 
   const approach = close_approach_data[0];
   const d = estimated_diameter.meters.estimated_diameter_max;
@@ -43,15 +46,17 @@ export const Asteroid = (props: AsteroidType) => {
         </div>
       </div>
       <div className={styles.row}>
-        {checked ? (
-          <button className={styles.btn + ' ' + styles.btn_checked} onClick={handleRemoveFromCart}>
-            В корзине
-          </button>
-        ) : (
-          <button className={styles.btn} onClick={handleAddToCart}>
-            Заказать
-          </button>
-        )}
+        {checkable &&
+          (checked ? (
+            <button className={styles.btn + ' ' + styles.btn_checked} onClick={handleRemoveFromCart}>
+              В корзине
+            </button>
+          ) : (
+            <button className={styles.btn} onClick={handleAddToCart}>
+              Заказать
+            </button>
+          ))
+        }
         {is_potentially_hazardous_asteroid && <Danger />}
       </div>
     </li>

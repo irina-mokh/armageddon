@@ -8,11 +8,11 @@ import styles from './page.module.scss';
 
 export default function Home() {
   return (
-    <Layout>
+    <>
       <h2 className={styles.title}>Ближайшие подлёты астероидов</h2>
       <DistanceToggler />
       <AsteroidList />
       <CartBar />
-    </Layout>
+    </>
   );
 }
